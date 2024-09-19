@@ -1,0 +1,40 @@
+{
+  "paths": {
+    "/search/autocomplete/pods": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "suggestions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "values": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": ["key", "values"]
+                      }
+                    }
+                  },
+                  "required": ["suggestions"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
