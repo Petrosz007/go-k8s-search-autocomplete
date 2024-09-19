@@ -15,3 +15,6 @@ fmt:
 
 run-in-cluster:
   ./bin/run-in-cluster.sh
+
+integration-test:
+  ./bin/integration-test-in-cluster.sh

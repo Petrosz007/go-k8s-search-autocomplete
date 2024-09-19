@@ -1,0 +1,19 @@
+meta {
+  name: pods
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8080/search/autocomplete/pods
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.suggestions: isArray
+  res.body.suggestions.length: gt 4
+  res.body.suggestions[0].key: eq namespace
+  res.body.suggestions[0].value: isArray
+}

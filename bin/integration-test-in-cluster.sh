@@ -5,6 +5,9 @@ set -euxo pipefail
 source "$(dirname "$0")/common.sh"
 
 start_in_cluster
-kubectl logs -f search-autocomplete-local-run
+
+pushd "$PROJECT_ROOT/bruno"
+bru run
+popd
 
 kill $KUBECTL_PROXY_PID

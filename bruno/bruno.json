@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "go-k8s-search-autocomplete",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
