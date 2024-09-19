@@ -4,19 +4,18 @@ HTTP service which provides search autocompletion for Kubernetes resources runni
 
 ## Required tools
 
+Assuming Docker and Go is installed on your machine, you'll need these project specific packages:
+
 ```sh
 brew install minikube just
 ```
 
 ## Running it locally
 
-First, start minikube with:
+> [!WARNING]  
+> Minikube will edit your Kubeconfig and add its configuration there. It should add it next to your current config, but it's never a bad idea to back it up, just in case.
 
-```sh
-just dev
-```
-
-Then, run the app in the local minikube cluster:
+To run the app in the local minikube cluster:
 
 ```sh
 just run-in-cluster

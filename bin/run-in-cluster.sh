@@ -2,7 +2,8 @@
 
 set -euxo pipefail
 
-# TODO: If minikube isn't running, start it
+# Start minikube if it isn't running
+minikube status || minikube start
 
 GOOS=linux go build -o ./target/search-autocomplete .
 eval $(minikube docker-env --shell bash)
