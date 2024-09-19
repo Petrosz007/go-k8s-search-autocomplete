@@ -19,5 +19,14 @@ func main() {
 			"suggestions": suggestion.Suggestions(pods),
 		})
 	})
+	r.GET("/livez", func(c *gin.Context) {
+		c.JSON(http.StatusOK, "ok")
+	})
+	r.GET("/readyz", func(c *gin.Context) {
+		// Do a request against the k8s api to check if we can still access it
+		// It panics if there is any failure, which will be a non 2XX response, which'll fail the readiness probe
+		k8s.Pods(clientset)
+		c.JSON(http.StatusOK, "ok")
+	})
 	r.Run()
 }

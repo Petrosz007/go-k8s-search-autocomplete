@@ -9,6 +9,17 @@ spec:
   containers:
   - name: search-autocomplete-local-run
     image: search-autocomplete:local-run
+    ports:
+    - name: http
+      containerPort: 8080
+    livenessProbe:
+      httpGet:
+        port: http
+        path: /livez
+    readinessProbe:
+      httpGet:
+        port: http
+        path: /readyz
   restartPolicy: Never
 
 ---

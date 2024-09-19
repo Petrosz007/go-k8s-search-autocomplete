@@ -30,6 +30,8 @@ func Client() *kubernetes.Clientset {
 func Pods(clientset *kubernetes.Clientset) []corev1.Pod {
 	pod_list, err := clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
+		// TODO: In this POC panicing is fine, but proper error handling could be added
+		// If we can't list pods, we'll try to backtrack, check if it's a permission issue, or if the connection to k8s fail
 		panic(err.Error())
 	}
 
