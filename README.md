@@ -1,12 +1,14 @@
 # Go k8s Search Autocomplete
 
+HTTP service which provides search autocompletion for Kubernetes resources running in the cluster.
+
 ## Required tools
 
 ```sh
 brew install minikube just
 ```
 
-## Local development
+## Running it locally
 
 First, start minikube with:
 
@@ -31,3 +33,9 @@ You can now query the app, for example with:
 ```sh
 curl localhost:8080/search/autocomplete/pods
 ```
+
+## Notes
+
+I've added `// TODO` comments for parts which would be nice to write, but would require more effort than it's worth for this POC.
+
+I've added `// ?` comments for parts, where I'm not too familiar with the pragmatic Go way of writing things, and I'm not sure what's the best choice.

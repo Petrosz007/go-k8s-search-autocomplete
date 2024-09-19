@@ -1,6 +1,12 @@
 dev:
   minikube start
 
+build:
+  go build -o ./target/search-autocomplete .
+
+test:
+  go test ./...
+
 run:
   go run .
 
