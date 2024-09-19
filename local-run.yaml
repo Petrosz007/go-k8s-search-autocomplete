@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: search-autocomplete-local-run
+  name: search-autocomplete-local-run
+spec:
+  containers:
+  - name: search-autocomplete-local-run
+    image: search-autocomplete:local-run
+  restartPolicy: Never
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: search-autocomplete-local-run
+spec:
+  selector:
+    app: search-autocomplete-local-run
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+
+# TODO: Creating a ClusterRoleBinding that grants view permissions to the default service account is a bad practise,
+# but for local testing in minikube it is fine.
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: default-view
+roleRef:
+  name: view
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+subjects:
+- name: default
+  namespace: default
+  kind: ServiceAccount
+
+
