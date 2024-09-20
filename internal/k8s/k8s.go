@@ -35,9 +35,7 @@ func Pods(clientset *kubernetes.Clientset) []corev1.Pod {
 	}
 
 	var pods []corev1.Pod
-	for _, pod := range pod_list.Items {
-		pods = append(pods, pod)
-	}
+	pods = append(pods, pod_list.Items...)
 
 	return pods
 }

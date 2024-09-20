@@ -13,6 +13,9 @@ run:
 fmt:
   go fmt ./...
 
+lint:
+  golangci-lint run ./...
+
 run-in-cluster:
   ./bin/run-in-cluster.sh
 

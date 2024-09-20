@@ -7,7 +7,7 @@ HTTP service which provides search autocompletion for Kubernetes resources runni
 Assuming Docker and Go is installed on your machine, you'll need these project specific packages:
 
 ```sh
-brew install minikube just bruno
+brew install minikube just bruno golangci-lint
 
 # Optional: to use bruno on the cli install bruno-cli with npm, the intergation test script uses this
 npm install -g @usebruno/cli
