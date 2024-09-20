@@ -16,7 +16,7 @@ func main() {
 		pods := k8s.Pods(clientset)
 
 		c.JSON(http.StatusOK, gin.H{
-			"suggestions": suggestion.Suggestions(pods),
+			"suggestions": suggestion.Pods(pods),
 		})
 	})
 	r.GET("/livez", func(c *gin.Context) {

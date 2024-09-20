@@ -8,7 +8,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-func TestSuggestions(t *testing.T) {
+func TestPods(t *testing.T) {
 	// Arrange
 	pods := []corev1.Pod{
 		{
@@ -55,8 +55,11 @@ func TestSuggestions(t *testing.T) {
 	}
 
 	// Act
-	result := Suggestions(pods)
+	result := Pods(pods)
 
 	// Assert
-	assert.ElementsMatch(t, expected, result, "Suggestions should return expected")
+	// TODO: This test can be flaky, because the value keys can also have a different order, which makes the assertion fail
+	// ?: I'm not sure what's the best Go way to write an "ElementsMatch, but deeply, so if each element contains a list somewhere make sure the order doesn't matter" function
+	// Maybe thsi package could be used: https://github.com/r3labs/diff
+	assert.ElementsMatch(t, expected, result)
 }

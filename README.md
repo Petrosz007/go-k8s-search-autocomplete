@@ -9,7 +9,7 @@ Assuming Docker and Go is installed on your machine, you'll need these project s
 ```sh
 brew install minikube just bruno
 
-# Optional: to use bruno on the cli install bruno-cli with npm
+# Optional: to use bruno on the cli install bruno-cli with npm, the intergation test script uses this
 npm install -g @usebruno/cli
 ```
 
@@ -55,17 +55,12 @@ I've added `// ?` comments for parts, where I'm not too familiar with the pragma
 
 ## Future improvement ideas
 
-### Design alternatives
-The current code with the go k8s client is extendible, if new resource types or fields need to be surfaced on the API only a few new functions have to be written.
-
-If we expect that a lot of new resource types would have to be added, then the k8s Go client can hold us back. It is type safe, but because of the type safety we need to explicitly query each resource (ex.: pod.Status.Phase). An alternative would be, to use the JSON API of k8s and provide the autocompletable fields as JSON path selectors in a config file. That way, we only define how to access specific fields in a JSON structure, and that can be scaled more easily with overall less code.
-
-I didn't choose this approach, because for the POC it would have required much more time and lines of code, and in this phase evaluating the functionality and iterating faster is more important, than an all-extensible perfect solution for the first POC.
-
-### TODOs
 - Write more tests for the Go code
   - Mock out the k8s API to test the my k8s module
-  - Mock out my k8s module to test the API layer 
+  - Mock out my k8s module to test the API layer
+- Config loading
+  - Right now only the port could be a config
+  - k8s client could be configured with other options, timeouts could be set, ... 
 - Better integration testing with Bruno
   - The tests should better test the values returned by the API. These current tests are enough to check if the API is alive and responds with some correctly formatted data.
 - Prometheus metrics

@@ -3,7 +3,6 @@ package k8s
 import (
 	"context"
 
-	"github.com/Petrosz007/go-k8s-search-autocomplete/internal/utils"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -41,37 +40,4 @@ func Pods(clientset *kubernetes.Clientset) []corev1.Pod {
 	}
 
 	return pods
-}
-
-func Namespaces(pods []corev1.Pod) []string {
-	var namespaces []string
-	for _, pod := range pods {
-		namespaces = append(namespaces, pod.Namespace)
-	}
-
-	return utils.Uniques(namespaces)
-}
-
-func Phases(pods []corev1.Pod) []string {
-	var phases []string
-	for _, pod := range pods {
-		phases = append(phases, string(pod.Status.Phase))
-	}
-
-	return utils.Uniques(phases)
-}
-
-func Labels(pods []corev1.Pod) map[string][]string {
-	labels := make(map[string][]string)
-	for _, pod := range pods {
-		for label_key, label_value := range pod.Labels {
-			labels[label_key] = append(labels[label_key], label_value)
-		}
-	}
-
-	for key, values := range labels {
-		labels[key] = utils.Uniques(values)
-	}
-
-	return labels
 }
